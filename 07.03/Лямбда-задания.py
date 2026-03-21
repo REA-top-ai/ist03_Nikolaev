@@ -1,1 +1,29 @@
+# 1
+contains_a = lambda word: 'a' in word
+print(contains_a('abc'))
+print(contains_a('dfg'))
 
+# 2
+long_string = lambda stroka: len(stroka) > 12
+print(long_string('qwertyqwertyq'))
+print(long_string('qwerty'))
+
+# 3
+end_in_a = lambda stroka: stroka[-1] == 'a'
+print(end_in_a('baa'))
+print(end_in_a('bee'))
+
+# 4
+even_or_odd = lambda num: 'четное' if num % 2 == 0 else 'нечетное'
+print(even_or_odd(10))
+print(even_or_odd(7))
+
+# 5
+multiple_of_three = lambda num: 'кратное трем' if num % 3 == 0 else 'не кратное'
+print(multiple_of_three(6))
+print(multiple_of_three(5))
+
+# 6
+rate_movie = lambda rating: 'Мне понравился этот фильм' if rating > 8.5 else 'Этот фильм был не очень хорошим'
+print(rate_movie(9))
+print(rate_movie(8))
