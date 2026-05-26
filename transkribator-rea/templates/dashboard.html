@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Личный кабинет</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+    <header>Личный кабинет</header>
+
+    <main>
+        <p>Привет, {{ username }}!</p>
+        <p>Твой id: {{ user_id }}</p>
+
+        <h2>Загрузить запись созвона</h2>
+
+        <form action="/upload" method="POST" enctype="multipart/form-data">
+            <input type="file" name="meeting_file" accept="audio/*,video/*" required>
+            <button type="submit">Загрузить файл</button>
+        </form>
+
+        <a href="/history">История транскрибаций</a>
+    </main>
+
+    <a href="/logout">Выйти</a>
+</body>
+</html>

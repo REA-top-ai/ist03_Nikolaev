@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>История транскрибаций</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+    <header>История транскрибаций</header>
+
+    <main>
+        {% if transcriptions %}
+            {% for item in transcriptions %}
+                <div class="history-card">
+                    <p><b>ID записи:</b> {{ item.id }}</p>
+                    <p><b>Файл:</b> {{ item.filename }}</p>
+                    <p><b>Путь:</b> {{ item.file_path }}</p>
+                    <p><b>Дата загрузки:</b> {{ item.created_at }}</p>
+
+                    {% if not item.transcript_text %}
+                        <form class="small-form" action="{{ url_for('transcribe', transcription_id=item.id) }}" method="POST">
+                            <button type="submit">Сделать транскрибацию</button>
+                        </form>
+                    {% endif %}
+
+                    {% if item.transcript_text and not item.analysis_text %}
+                        <form class="small-form" action="{{ url_for('analyze', transcription_id=item.id) }}" method="POST">
+                            <button type="submit">Проанализировать</button>
+                        </form>
+                    {% endif %}
+
+                    <p><b>Транскрибация:</b></p>
+                    <pre>{{ item.transcript_text or 'Пока не выполнена' }}</pre>
+
+                    <p><b>Анализ:</b></p>
+                    <pre>{{ item.analysis_text or 'Пока не выполнен' }}</pre>
+                </div>
+            {% endfor %}
+        {% else %}
+            <p>У тебя пока нет загруженных созвонов.</p>
+        {% endif %}
+    </main>
+
+    <a href="/dashboard">Назад в кабинет</a>
+    <a href="/logout">Выйти</a>
+</body>
+</html>
