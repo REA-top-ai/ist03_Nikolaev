@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Транскрибация аудио</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+
+
+
+</head>
+
+
+<body>
+    <header>Вход</header>
+
+    <form action="/submit" method="POST">
+    <input type="text" name="username" placeholder="Введите имя">
+    <input type="password" name="pw" placeholder="Пароль">
+
+    {% if error %}
+        <p class="error-text">{{ error }}</p>
+    {% endif %}
+
+    <button type="submit">Войти</button>
+    </form>
+
+    <a href="/register">Регистрация</a>
+
+
+</body>
+</html>
